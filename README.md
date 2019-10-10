@@ -17,7 +17,7 @@ Funkcija nėra deterministinė. Naudojant maišos funkciją dideliems failams, o
 tekstiniame faile `results.txt` išvedami pirmosios tyrimo-analizės pukto gauti rezultatai;
 `kon_results.txt` faila hash'uojama konstitucija ir laikas; trečiojo ir ketvirtojo punkto testiniai failai ir rezultatai nėra patalpinti repositorijoje dėl didelės apimties. 
 
-## [v1.0]()
+## [v1.0](https://github.com/umbrasaited/Hash-generatorius/releases/tag/v1.0)
 
 Pirmojoje versijoje patalpintas programos kodas ir testiniai failai.
 
