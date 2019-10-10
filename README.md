@@ -21,6 +21,6 @@ tekstiniame faile `results.txt` išvedami pirmosios tyrimo-analizės pukto gauti
 
 Pirmojoje versijoje patalpintas programos kodas ir testiniai failai.
 
-## [v1.0.1]()
+## [v1.0.1](https://github.com/umbrasaited/Hash-generatorius/releases/tag/v1.0.1)
 
 Papildytas `readme` failas ir pridėtas `makefile`.
