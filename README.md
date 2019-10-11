@@ -6,7 +6,7 @@ Užduočiai atlikti, domėjausi jau egzistuojančiomis hash funkcijomis ir pagal
 
 ## Programos veikimas
 
-gaunamas input'as string formatu, vėliau konvertuojamas į char masyvą, kurio dydis iki 100000 simbolių. Naudojama maišos funkcija gauna char simbolių masyvą ir naudodama shift operatorius paverčia į long formato 10 skaitmenų skaičių, išvedant galutinį hash'ą skaičius dar konvertuojamas hex formatu. 
+gaunamas input'as string formatu, vėliau konvertuojamas į char masyvą, kurio dydis iki 100000 simbolių. Naudojama maišos funkcija gauna char simbolių masyvą ir naudodama shift operatorius paverčia į long formato 8 skaitmenų skaičių, išvedant galutinį hash'ą skaičius dar konvertuojamas hex formatu. 
 
 ## Programos veikimo nesklandumai
 
