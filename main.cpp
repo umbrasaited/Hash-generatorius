@@ -13,66 +13,101 @@ using std::ifstream;
 using std::istreambuf_iterator;
 using std::ofstream;
 using std::string;
+using std::stringstream;
 
-char gen_random(const int len) {
-	char s[100];
-	static const char alphanum[] =
-		"abcdefghijklmnopqrstuvwxyz";
+const int length = 8;
+ofstream off("test.txt");
 
-
-static unsigned long hash(unsigned char *str)
+string hash(string str) 
 {
-	unsigned long hash = 0;
-	int c;
+	unsigned int hash = 0;
+	unsigned int i = 0;
+	unsigned int len = str.length();
+	stringstream stream;
 
-	while (c = *str++)
-		hash = c + (hash << 6) + (hash << 16) - hash;
+	for (i = 0; i < len; i++)
+	{
+		hash = (str[i]) + (hash << 5) + (hash << 15) - hash;
+	}
 
-	return hash;
+	stream << hex << hash;
+	string output(stream.str());
+	return output;
 }
 
+void write_hash(string str)
+{
+	int x = 0;
+	for (int i = 0; i < length; i++)
+	{
+		if (x < hash(str).length())
+		{
+			off << hash(str)[x];
+			x++;
+		}
+		else
+		{
+			x = 0;
+			off << hash(str)[x];
+		}
+	}
+	off << endl;
+}
+
+void print_hash(string str)
+{
+	int x = 0;
+	for (int i = 0; i < length; i++)
+	{
+		if (x < hash(str).length())
+		{
+			cout << hash(str)[x];
+			x++;
+		}
+		else
+		{
+			x = 0;
+			cout << hash(str)[x];
+		}
+	}
+	cout << endl;
+}
 
 int main(int argc, char **argv)
 {
 	bool choice;
-	string input;
-	unsigned char array[100000];
+	string input, line = "";
 	cout << "Skaityti faila(1), ivesti(0)" << endl;
 	cin >> choice;
 	switch (choice) 
 	{
 		case 1:
+			
 			for (int i = 1; i < argc; i++)
 			{
-				auto start = std::chrono::high_resolution_clock::now();
 				ifstream infile(argv[i]);
 				if (infile.is_open() && infile.good())
 				{
 					cout << "Skaitomas failas.." << endl;
-					string content((istreambuf_iterator<char>(infile)), (istreambuf_iterator<char>()));
-					for (int j = 0; j < content.length(); j++)
-						array[j] = content[j];
-					cout << hex << hash(array) << endl;
+					auto start = std::chrono::high_resolution_clock::now();
+					//string line((istreambuf_iterator<char>(infile)), (istreambuf_iterator<char>()));
+					while (getline(infile, line)) write_hash(line);
 					auto end = std::chrono::high_resolution_clock::now();
 					std::chrono::duration<double> diff = end - start;
-					cout << endl;
-					cout << diff.count() << " s" << endl;
+					off << endl;
+					off << diff.count() << " s" << endl;
 				}
 				else
 				{
 					cout << "Nepavyko atidaryti failo" << endl;
 				}
 			}
-			
 			break;
 			
 		case 0: 
 			cin >> input;
-			for (int i = 0; i < input.length(); i++)
-				array[i] = input[i];
-			cout << hex << hash(array) << endl;
+			print_hash(input);
 			break;
 	}
 
 	return 0;
-}
